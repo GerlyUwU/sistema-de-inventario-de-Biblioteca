@@ -14,7 +14,7 @@ El proyecto contiene 2 carpetas , las cuales son:
 
 Tambien, las salidas de compilacion seran generadas en la carpeta `bin` de manera predeterminada
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+> Ojala terminemos xddddd
 
 ## Colaboradores del proyecto 
 
