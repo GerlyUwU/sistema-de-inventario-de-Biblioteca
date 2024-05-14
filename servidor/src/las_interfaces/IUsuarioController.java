@@ -10,6 +10,8 @@ public interface IUsuarioController extends Remote {
 
     int ADD_EXITO = 1;
     int ADD_ID_DUPLICADO = 2;
+    int ADD_SIN_EXITO = 3;
+    
     int UPDATE_EXITO = 1;
     int UPDATE_INEXISTENTE = 2;
 }
