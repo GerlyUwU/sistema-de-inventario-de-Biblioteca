@@ -19,7 +19,7 @@ public interface IUsuario extends Remote {
 
     void setTelefono(String telefono) throws RemoteException;
 
-    String getNmeroIdentificacion() throws RemoteException;
+    String getNumeroIdentificacion() throws RemoteException;
 
     void setNumeroIdentificacion(String NumeroIdentificacion) throws RemoteException;
 

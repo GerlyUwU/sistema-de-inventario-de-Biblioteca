@@ -25,9 +25,64 @@ public class Usuario extends UnicastRemoteObject implements IUsuario {
         this.numeroIdentificacion = numeroIdentificacion;
     }
 
+
+    public int getId() throws RemoteException{
+        return id;
+    }
+
+
+    public void setId(int id) throws RemoteException{
+        this.id = id;
+    }
+
+
+    public String getNombre() throws RemoteException{
+        return nombre;
+    }
+
+
+    public void setNombre(String nombre)throws RemoteException {
+        this.nombre = nombre;
+    }
+
+
+    public String getDireccion() throws RemoteException{
+        return direccion;
+    }
+
+
+    public void setDireccion(String direccion)throws RemoteException {
+        this.direccion = direccion;
+    }
+
+
+    public String getTelefono()throws RemoteException {
+        return telefono;
+    }
+
+
+    public void setTelefono(String telefono)throws RemoteException {
+        this.telefono = telefono;
+    }
+
+    
+    public String getNumeroIdentificacion() throws RemoteException{
+        return numeroIdentificacion;
+    }
+
+
+    public void setNumeroIdentificacion(String numeroIdentificacion) throws RemoteException{
+        this.numeroIdentificacion = numeroIdentificacion;
+    }
+
+    public String getString() throws RemoteException {
+        return String.format("Id: %d, Nombre: %s, Email: %s, Telefono: %s, Numero de Identificacion: %s",
+                id, nombre, direccion, telefono,numeroIdentificacion);
+    }
+
+}
+
     
 
 
 
-
-}
