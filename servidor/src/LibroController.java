@@ -55,7 +55,9 @@ public class LibroController extends UnicastRemoteObject implements ILibroContro
                 datos.put("id", libro.getCopiasDisponibles());
             }
 
-            return ADD_ID_DUPLICADO;
+            int respuesta = dbManager.insertar(TABLE, datos);
+
+            return (respuesta > 0) ? ADD_EXITO : ADD_SIN_EXITO;
         }
 
         return 0;

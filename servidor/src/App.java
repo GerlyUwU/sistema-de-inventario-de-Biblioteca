@@ -12,6 +12,15 @@ public class App {
             LocateRegistry.createRegistry(1099);
             IUsuarioController usuarioController = new UsuarioController();
             Naming.rebind("rmi://localhost/UsuarioController", usuarioController);
+            
+
+
+
+
+
+
+
+
             System.out.println("En espera de una solicitud...");
         } catch (RemoteException e) {
             // TODO Auto-generated catch block

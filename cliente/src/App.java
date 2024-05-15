@@ -12,7 +12,7 @@ public class App {
        try {
         IUsuarioController usuarioController = 
            (IUsuarioController) Naming.lookup("rmi://localhost/UsuarioController");
-
+        
        List<IUsuario> lista = usuarioController.list();
         for(IUsuario usuario : lista){
             System.out.println(usuario.getString());
