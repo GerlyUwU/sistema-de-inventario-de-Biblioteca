@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 public class DBManager {
     private Connection conexion;
 
-    public DBManager() {
-        String url = "jdbc:sqlite:C:/Users/gerli/OneDrive/Documentos/Repositorios/sistema-de-inventario-de-Biblioteca/servidor/db/biblioteca.db";
+    public DBManager(){
+        String url = "jdbc:sqlite:C:\\Users\\toni_\\Desktop\\Nueva carpeta\\RMIBiblioteca\\sistema-de-inventario-de-Biblioteca\\servidor\\db\\biblioteca.db";
         try {
             conexion = DriverManager.getConnection(url);
             System.out.println("Conexión a BD exitosa.");
@@ -24,6 +24,7 @@ public class DBManager {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     } // Fin constructor
+
 
     /* Insertar */
     public int insertar(String tabla, Map<String, Object> datos) {
