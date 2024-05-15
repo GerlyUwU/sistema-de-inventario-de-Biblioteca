@@ -1,7 +1,9 @@
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import las_interfaces.IUsuario;
 import las_interfaces.IUsuarioController;
@@ -55,6 +57,17 @@ public class UsuarioController extends UnicastRemoteObject implements IUsuarioCo
         int respuesta = dbManager.insertar(TABLE, datos);
 
         return (respuesta > 0) ? ADD_EXITO : ADD_SIN_EXITO;
+
+    }
+
+    /**************************
+     * fin del metodo add
+     ***************************************************/
+
+    @Override
+    public int update(IUsuario usuario) throws RemoteException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
@@ -64,9 +77,37 @@ public class UsuarioController extends UnicastRemoteObject implements IUsuarioCo
     }
 
     @Override
+    public int delete(int idUsuario) throws RemoteException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public List<IUsuario> list() throws RemoteException {
+        // TODO Auto-generated method stub
+        List<IUsuario> listaIUsuario = new ArrayList<>();
+
+        List<Map<String, Object>> registros = dbManager.listar(TABLE);
+
+        for (Map<String, Object> registro : registros) {
+            IUsuario usuario = Usuario.fromMap(registro);
+            listaIUsuario.add(usuario);
+
+        }
+
+        return listaIUsuario;
+    }
+
+    @Override
     public IUsuario findOne(int idUsuario) throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findOne'");
+    }
+
+    @Override
+    public List<IUsuario> find(IUsuario usuario) throws RemoteException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'find'");
     }
 
 }
