@@ -16,7 +16,7 @@ public class DBManager {
     private Connection conexion;
 
     public DBManager(){
-        String url = "jdbc:sqlite:C:\\Users\\toni_\\Desktop\\Nueva carpeta\\RMIBiblioteca\\sistema-de-inventario-de-Biblioteca\\servidor\\db\\biblioteca.db";
+        String url ="jdbc:sqlite:C:/Users/toni_/Desktop/Nueva carpeta/RMIBiblioteca/sistema-de-inventario-de-Biblioteca/servidor/db/biblioteca.db";
         try {
             conexion = DriverManager.getConnection(url);
             System.out.println("Conexión a BD exitosa.");
