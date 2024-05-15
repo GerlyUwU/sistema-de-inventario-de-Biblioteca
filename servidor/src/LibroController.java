@@ -1,67 +1,100 @@
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
 import java.util.List;
-import las_interfaces.IUsuario;
-import las_interfaces.IUsuarioController;
+import java.util.Map;
+import las_interfaces.ILibro;
+import las_interfaces.ILibroController;
 
-public class LibroController extends UnicastRemoteObject implements IUsuarioController {
+public class LibroController extends UnicastRemoteObject implements ILibroController {
 
     private DBManager dbManager;
-    private final String TABLE = "libros";
+    private final String TABLE = "Libros";
 
     public LibroController() throws RemoteException {
         dbManager = new DBManager();
     }
 
     @Override
-    public IUsuario newInstance() throws RemoteException {
+    public ILibro newInstance() throws RemoteException {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'newInstance'");
+        return new Libro();
     }
 
     @Override
-    public int add(IUsuario usuario) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+    public int add(ILibro libro) throws RemoteException {
+        boolean existe = false;
+        if (libro.getId() != 0) {
+            Map<String, Object> where = new HashMap<>();
+            where.put("id", libro.getId());
+            Map<String, Object> registro = dbManager.buscarUno(TABLE, where);
+            existe = registro.size() > 0;
+
+        }
+        if (existe) {
+            Map<String, Object> datos = new HashMap<>();
+            if (libro.getId() != 0) {
+                datos.put("id", libro.getId());
+            }
+
+            if (libro.getTitulo() != null) {
+                datos.put("id", libro.getTitulo());
+            }
+
+            if (libro.getAutor() != null) {
+                datos.put("id", libro.getAutor());
+            }
+            if (libro.getGenero() != null) {
+                datos.put("id", libro.getGenero());
+            }
+            if (libro.getAnioPublicacion() != null) {
+                datos.put("id", libro.getAnioPublicacion());
+            }
+            if (libro.getCopiasDisponibles() != null) {
+                datos.put("id", libro.getCopiasDisponibles());
+            }
+
+            return ADD_ID_DUPLICADO;
+        }
+
+        return 0;
     }
 
     @Override
-    public int update(IUsuario usuario) throws RemoteException {
+    public int update(ILibro libro) throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
-    public int delete(IUsuario usuario) throws RemoteException {
+    public int delete(ILibro libro) throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
-    public int delete(int idUsuario) throws RemoteException {
+    public int delete(int id) throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
-    public List<IUsuario> list() throws RemoteException {
+    public List<ILibro> list() throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'list'");
     }
 
     @Override
-    public IUsuario findOne(int idUsuario) throws RemoteException {
+    public ILibro findOne(int id) throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findOne'");
     }
 
     @Override
-    public List<IUsuario> find(IUsuario usuario) throws RemoteException {
+    public List<ILibro> find(ILibro libro) throws RemoteException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'find'");
     }
 
-
-    
 }
