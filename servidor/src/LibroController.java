@@ -1,6 +1,7 @@
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ import las_interfaces.ILibroController;
 
 public class LibroController extends UnicastRemoteObject implements ILibroController {
 
-    private DBManager dbManager;
+    private final DBManager dbManager;
     private final String TABLE = "Libros";
 
     public LibroController() throws RemoteException {
@@ -24,79 +25,107 @@ public class LibroController extends UnicastRemoteObject implements ILibroContro
 
     @Override
     public int add(ILibro libro) throws RemoteException {
-        boolean existe = false;
-        if (libro.getId() != 0) {
-            Map<String, Object> where = new HashMap<>();
-            where.put("id", libro.getId());
-            Map<String, Object> registro = dbManager.buscarUno(TABLE, where);
-            existe = registro.size() > 0;
-
+        ILibro libroEncontrado = findOne(libro.getId());
+        boolean existe = libroEncontrado.getId() != 0;
+        if(existe){
+            return ADD_ID_DUPLICADO;
         }
-        if (existe) {
-            Map<String, Object> datos = new HashMap<>();
-            if (libro.getId() != 0) {
-                datos.put("id", libro.getId());
-            }
+        Map<String, Object> datos = Libro.toMap(libro);
 
-            if (libro.getTitulo() != null) {
-                datos.put("id", libro.getTitulo());
-            }
-
-            if (libro.getAutor() != null) {
-                datos.put("autor", libro.getAutor());
-            }
-            if (libro.getGenero() != null) {
-                datos.put("genero", libro.getGenero());
-            }
-            if (libro.getAnioPublicacion() != null) {
-                datos.put("anio_publicacion", libro.getAnioPublicacion());
-            }
-            if (libro.getCopiasDisponibles() != null) {
-                datos.put("copias_disponibles", libro.getCopiasDisponibles());
-            }
-
-            int respuesta = dbManager.insertar(TABLE, datos);
-
-            return (respuesta > 0) ? ADD_EXITO : ADD_SIN_EXITO;
-        }
-
-        return 0;
-    }
+        int respuesta = dbManager.insertar(TABLE, datos);
+        return (respuesta > 0) ? ADD_EXITO : ADD_SIN_EXITO;  
+    }//fin del metodo 
 
     @Override
     public int update(ILibro libro) throws RemoteException {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
+        if(libro.getId() == 0 ){
+            return UPDATE_ID_NULO;
+        }
+        //verficar que existe persona con id recibido 
+        ILibro libroEncontrado = findOne(libro.getId());
+        if(libroEncontrado.getId() == 0){
+            return UPDATE_INEXISTE;
+        }
+        Map<String, Object> datos = Libro.toMap(libro);
+        Map<String, Object> where = new HashMap<>();
+        where.put("id", libro.getId());
+        int respuesta = dbManager.actualizar(TABLE, datos, where);
+        return (respuesta > 0) ? UPADATE_EXITO : UPDATE_SIN_EXITO;
+    }//fin del metodo update 
 
     @Override
     public int delete(ILibro libro) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        ILibro libroTemp = findOne(libro.getId());
+        if(libroTemp.getId() == 0){
+            return DELETE_ID_INEXISTENTE;
+        }
+        Map<String, Object> where = new HashMap<>();
+        where.put("id",libro.getId());
+        int respuesta = dbManager.eliminar(TABLE,where);
+        if(respuesta == 0){
+            return DELETE_SIN_EXITO;
+        }else{
+           return DELETE_EXITO;
+        }
+        
     }
 
     @Override
     public int delete(int id) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        ILibro libroTemp = findOne(id);
+        if (libroTemp.getId() == 0) {
+            return DELETE_ID_INEXISTENTE;
+        }
+
+        Map<String, Object> where = new HashMap<>();
+        where.put("id", id);
+        int respuesta = dbManager.eliminar(TABLE, where);
+        if (respuesta == 0) {
+            return DELETE_SIN_EXITO;
+        } else {
+            return DELETE_EXITO;
+        }
     }
 
     @Override
     public List<ILibro> list() throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'list'");
+        List<ILibro> listaILibro = new ArrayList<>();
+        List<Map<String, Object>> registros = dbManager.listar(TABLE);
+
+        for (Map<String, Object> registro : registros) {
+            ILibro libro = Libro.fromMap(registro);
+
+            listaILibro.add(libro);
+        }
+
+        return listaILibro;
+
     }
 
     @Override
     public ILibro findOne(int id) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findOne'");
+        Map<String, Object> where = new HashMap<>();
+        where.put("id", id);
+        Map<String, Object> registro = dbManager.buscarUno(TABLE, where);
+
+        return Libro.fromMap(registro);
     }
 
     @Override
     public List<ILibro> find(ILibro libro) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'find'");
+        List<ILibro> listaILibro = new ArrayList<>();
+
+        Map<String, Object> where = Libro.toMap(libro);
+        List<Map<String, Object>> registros = dbManager.listar(TABLE, null);
+
+        for (Map<String, Object> registro : registros) {
+            ILibro libroTemp = Libro.fromMap(registro);
+
+            listaILibro.add(libroTemp);
+        }
+
+        return listaILibro;
     }
 
-}
+}// fin de la clase libro controller

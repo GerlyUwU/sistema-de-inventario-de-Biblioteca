@@ -1,7 +1,6 @@
 package las_interfaces;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
+import java.rmi.*;
 import java.util.List;
 
 public interface ILibroController extends Remote {
