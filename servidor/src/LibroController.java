@@ -43,16 +43,16 @@ public class LibroController extends UnicastRemoteObject implements ILibroContro
             }
 
             if (libro.getAutor() != null) {
-                datos.put("id", libro.getAutor());
+                datos.put("autor", libro.getAutor());
             }
             if (libro.getGenero() != null) {
-                datos.put("id", libro.getGenero());
+                datos.put("genero", libro.getGenero());
             }
             if (libro.getAnioPublicacion() != null) {
-                datos.put("id", libro.getAnioPublicacion());
+                datos.put("anio_publicacion", libro.getAnioPublicacion());
             }
             if (libro.getCopiasDisponibles() != null) {
-                datos.put("id", libro.getCopiasDisponibles());
+                datos.put("copias_disponibles", libro.getCopiasDisponibles());
             }
 
             int respuesta = dbManager.insertar(TABLE, datos);
