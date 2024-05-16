@@ -42,7 +42,7 @@ public class LibroController extends UnicastRemoteObject implements ILibroContro
         if(libro.getId() == 0 ){
             return UPDATE_ID_NULO;
         }
-        //verficar que existe persona con id recibido 
+        //verficar que existe libro con id recibido 
         ILibro libroEncontrado = findOne(libro.getId());
         if(libroEncontrado.getId() == 0){
             return UPDATE_INEXISTE;
