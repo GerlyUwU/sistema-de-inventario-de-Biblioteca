@@ -24,7 +24,8 @@ public class DBManager {
      private Connection conexion;
 
     public DBManager() {
-        String url = "jdbc:sqlite:C:/Users/zS21017270/Downloads/biblioteca.db";
+        String url = "jdbc:sqlite:C:\\Users\\gerli\\OneDrive\\Documentos\\sistema-de-inventario-de-Biblioteca\\servidor\\db\\biblioteca.db";
+
         try {
             conexion = DriverManager.getConnection(url);
             System.out.println("Conexión a BD exitosa.");
@@ -229,4 +230,17 @@ public class DBManager {
             return registro;
         }
     } // Fin listar(String,Map)
+    
+    //eliminar el caso de que algo salga mal 
+    
+    public void cerrarConexion() {
+        try {
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+                System.out.println("Conexión cerrada.");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

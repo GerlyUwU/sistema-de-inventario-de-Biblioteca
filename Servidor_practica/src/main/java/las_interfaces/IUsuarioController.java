@@ -29,6 +29,8 @@ public interface IUsuarioController extends Remote {
     IUsuario findOne(int id) throws RemoteException;
 
     List <IUsuario> find(IUsuario usuario) throws RemoteException;
+    
+    void cerrarConexion()throws RemoteException ;
 
     int ADD_EXITO = 1;
     int ADD_ID_DUPLICADO = 2;

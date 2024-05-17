@@ -3,7 +3,6 @@ package vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
-import java.rmi.NotBoundException;
 import java.rmi.*;
 import java.util.HashSet;
 import java.util.List;
@@ -474,6 +473,15 @@ public class Vista extends javax.swing.JFrame implements ActionListener {
     private void btnCambiarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCambiarUsuarioActionPerformed
      // Ocultar la ventana actual de libros
     this.setVisible(false);
+    
+    
+    //cerrar conexion con la base de datos
+    try {
+        libroController.cerrarConexion();
+} catch (RemoteException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+}
     
     // Crear una instancia de la vista de usuarios
     VistaUsuarios vistaUsuarios = new VistaUsuarios();

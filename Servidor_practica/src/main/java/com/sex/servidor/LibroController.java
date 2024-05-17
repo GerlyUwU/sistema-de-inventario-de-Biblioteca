@@ -135,6 +135,11 @@ public class LibroController extends UnicastRemoteObject implements ILibroContro
 
         return listaILibro;
     }
+    
+    @Override
+    public void cerrarConexion() throws RemoteException {
+        dbManager.cerrarConexion();
+    }
 
 }// fin de la clase libro controller
 

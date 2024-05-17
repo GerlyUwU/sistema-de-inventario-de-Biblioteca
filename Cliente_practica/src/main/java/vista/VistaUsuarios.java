@@ -107,24 +107,27 @@ private DefaultTableModel modeloTablaUsuarios;
         e.printStackTrace();
     }
    }
-        /************************************************************************************************/
+   
+   /************************************************************************************************/
+     /************************************************************************************************/
      /************************************************************************************************/
      /************************************************************************************************/
    
-     private void eliminarUsuario(){
-         try {
+   private void eliminarUsuario(){
+       try{
+         IUsuario usuarioEliminado = usuarioController.newInstance();  
           int id =Integer.parseInt(txtFID.getText());
-        IUsuario usuarioEliminado = usuarioController.newInstance();
-        usuarioEliminado.setId(id);
-        int respuesta = usuarioController.delete(usuarioEliminado);
-        listarUsuarios(); // Actualiza la lista de libros en la tabla
-    } catch (RemoteException e) {
+          usuarioEliminado.setId(id);
+          int respuesta = usuarioController.delete(usuarioEliminado);
+         listarUsuarios();
+         
+       }catch (RemoteException e) {
         e.printStackTrace();
     } catch (NumberFormatException e) {
         // Manejar el error de formato incorrecto
         e.printStackTrace();
     }
-     }
+   }
 
    //
 

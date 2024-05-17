@@ -137,6 +137,10 @@ public class UsuarioController extends UnicastRemoteObject implements IUsuarioCo
         
         return listaIUsuario;
     }
+    
+    public  void cerrarConexion() throws RemoteException{
+        dbManager.cerrarConexion();
+    }
 
 }
 

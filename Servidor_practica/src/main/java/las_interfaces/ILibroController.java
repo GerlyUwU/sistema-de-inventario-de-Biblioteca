@@ -28,6 +28,8 @@ public interface ILibroController extends Remote {
     ILibro findOne(int id) throws RemoteException;
 
     List <ILibro> find(ILibro libro) throws RemoteException;
+    
+    void cerrarConexion() throws RemoteException;
 
     int ADD_EXITO = 1;
     int ADD_ID_DUPLICADO = 2;
