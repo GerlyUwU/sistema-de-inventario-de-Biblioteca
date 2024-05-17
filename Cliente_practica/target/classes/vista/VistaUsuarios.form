@@ -404,7 +404,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnCambiarLibros">
       <Properties>
-        <Property name="text" type="java.lang.String" value="cambiar a inventario de libro"/>
+        <Property name="text" type="java.lang.String" value="cambiar a inventario de libros"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCambiarLibrosActionPerformed"/>

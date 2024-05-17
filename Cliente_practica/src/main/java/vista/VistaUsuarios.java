@@ -301,7 +301,7 @@ private DefaultTableModel modeloTablaUsuarios;
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        btnCambiarLibros.setText("cambiar a inventario de libro");
+        btnCambiarLibros.setText("cambiar a inventario de libros");
         btnCambiarLibros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCambiarLibrosActionPerformed(evt);
