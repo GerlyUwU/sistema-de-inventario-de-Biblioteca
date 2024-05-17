@@ -105,6 +105,8 @@ private DefaultTableModel modeloTablaUsuarios;
     }
    }
 
+   //
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -376,6 +378,14 @@ private DefaultTableModel modeloTablaUsuarios;
 
     private void btnCambiarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLibrosActionPerformed
         // TODO add your handling code here:
+       // Ocultar la ventana actual de usuarios
+    this.setVisible(false);
+    
+    // Crear una instancia de la vista de libros
+    Vista vista = new Vista();
+    
+    // Hacer visible la ventana de libros
+    vista.setVisible(true); 
     }//GEN-LAST:event_btnCambiarLibrosActionPerformed
 
     /**
