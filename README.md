@@ -9,10 +9,9 @@ Proyecto para la Experiencia educativa de desarrollo de sistemas en red
 
 El proyecto contiene 2 carpetas , las cuales son:
 
-- `cliente`: La carpeta con el codigo de la vista del cliente segun la arquitectura RPC 
-- `lib`: La carpeta con las dependencias
+- `cliente_practica`: La carpeta con el codigo de la vista del cliente segun la arquitectura RPC 
+- `Servidor_practica`: La carpeta con el codigo del servidor segun la arquitectura RPC
 
-Tambien, las salidas de compilacion seran generadas en la carpeta `bin` de manera predeterminada
 
 > Ojala terminemos xddddd
 
