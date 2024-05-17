@@ -24,7 +24,7 @@ public class DBManager {
      private Connection conexion;
 
     public DBManager() {
-        String url =  "jdbc:sqlite:C:/Users/gerli/OneDrive/Documentos/NetBeansProjects/sistema-de-inventario-de-Biblioteca/servidor/db/biblioteca.db";
+        String url = "jdbc:sqlite:C:/Users/zS21017270/Downloads/biblioteca.db";
         try {
             conexion = DriverManager.getConnection(url);
             System.out.println("Conexión a BD exitosa.");

@@ -35,6 +35,7 @@ private DefaultTableModel modeloTablaUsuarios;
         
          btnListarUsuarios.addActionListener(this);
          btnGuardarUsuario.addActionListener(this);
+         btnEliminarUsuario.addActionListener(this);
          
           modeloTablaUsuarios =(DefaultTableModel) tablaUsuarios.getModel();
         
@@ -48,6 +49,8 @@ private DefaultTableModel modeloTablaUsuarios;
         listarUsuarios();
     }else if (e.getSource()==btnGuardarUsuario){
       agregarUsuario();  
+    }else if(e.getSource()==btnEliminarUsuario){
+        eliminarUsuario();
     }
 }
      /************************************************************************************************/
@@ -104,6 +107,24 @@ private DefaultTableModel modeloTablaUsuarios;
         e.printStackTrace();
     }
    }
+        /************************************************************************************************/
+     /************************************************************************************************/
+     /************************************************************************************************/
+   
+     private void eliminarUsuario(){
+         try {
+          int id =Integer.parseInt(txtFID.getText());
+        IUsuario usuarioEliminado = usuarioController.newInstance();
+        usuarioEliminado.setId(id);
+        int respuesta = usuarioController.delete(usuarioEliminado);
+        listarUsuarios(); // Actualiza la lista de libros en la tabla
+    } catch (RemoteException e) {
+        e.printStackTrace();
+    } catch (NumberFormatException e) {
+        // Manejar el error de formato incorrecto
+        e.printStackTrace();
+    }
+     }
 
    //
 
