@@ -8,9 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import las_interfaces.*;
-import las_interfaces.ILibroController;
-import las_interfaces.IUsuario;
-import las_interfaces.IUsuarioController;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -132,11 +129,41 @@ public class Vista extends javax.swing.JFrame implements ActionListener {
     /************************************************************************************************/
     private void actualizarLibro() {
         try {
+            // Obtener el ID del libro desde el campo de texto
             int id = Integer.parseInt(txtFId.getText());
-            ILibro libroActualizado = libroController.newInstance();
-            libroActualizado.setId(id);
-            int respuesta = libroController.update(libroActualizado);
-            listarLibros(); // Actualiza la lista de libros en la tabla
+            
+            // Obtener el libro actual desde el controlador usando findOne
+            ILibro libroActual = libroController.findOne(id);
+            
+            if (libroActual != null) {
+                // Verificar y actualizar solo los campos modificados
+    
+                String nuevoTitulo = txtFTitulo.getText();
+                if (!nuevoTitulo.isEmpty()) {
+                    libroActual.setTitulo(nuevoTitulo);
+                }
+    
+                String nuevoAutor = txtFAutor.getText();
+                if (!nuevoAutor.isEmpty()) {
+                    libroActual.setAutor(nuevoAutor);
+                }
+    
+                String nuevoGenero = txtFGenero.getText();
+                if (!nuevoGenero.isEmpty()) {
+                    libroActual.setGenero(nuevoGenero);
+                }
+    
+                // Agregar más campos según sea necesario...
+    
+                // Actualizar el libro en el servidor
+                int respuesta = libroController.update(libroActual);
+                
+                // Actualizar la lista de libros en la tabla
+                listarLibros();
+            } else {
+                // Manejar el caso en el que el libro con el ID proporcionado no existe
+                System.out.println("Libro no encontrado con ID: " + id);
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
@@ -144,6 +171,8 @@ public class Vista extends javax.swing.JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -24,7 +24,8 @@ public class DBManager {
      private Connection conexion;
 
     public DBManager() {
-        String url = "jdbc:sqlite:C:\\Users\\UV\\Desktop\\Repositorios\\sistema-de-inventario-de-Biblioteca\\Servidor_practica\\db\\biblioteca.db";
+        String url = "jdbc:sqlite:C:\\Users\\zS21017270\\Desktop\\Repositorios\\sistema-de-inventario-de-Biblioteca\\Servidor_practica\\db\\biblioteca.db";
+
 
         try {
             conexion = DriverManager.getConnection(url);
