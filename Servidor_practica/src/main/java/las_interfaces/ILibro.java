@@ -39,3 +39,7 @@ public interface ILibro extends Remote {
 
     String getString() throws RemoteException;
 }
+
+
+/*agregando comentarios pal commit xdd  */
+/* si lees esto deja de estar de chisme owo */
